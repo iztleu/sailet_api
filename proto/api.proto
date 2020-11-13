@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package sailet_api;
+
+message Login {
+    string email = 1;
+    string password = 2;
+}
+
+message Account {
+    string email = 1;
+    string password = 2;
+    string info = 3;
+}
+
+message ItemAccount {
+    repeated Account items = 1;
+}
+
+message GetRequest{
+    string email = 1;
+}
+
+message DeletResponce{
+    string message = 1;
+}
+
+service AccountService {
+    rpc Login(Login) returns (Account) {}
+
+    rpc Get(GetRequest) returns (Account) {}
+
+    rpc GetAll(GetRequest) returns (ItemAccount) {}
+
+    rpc Update(Account) returns (Account) {}
+
+    rpc Delet(Account) returns (DeletResponce){}
+}
