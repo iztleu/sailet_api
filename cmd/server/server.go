@@ -137,7 +137,7 @@ func main() {
 
 	flag.Parse()
 	fmt.Printf("server starting on port %d...\n", *port)
-	fmt.Printf("server starting host db %s...\n", host)
+	fmt.Printf("server starting host db %v...\n", *host)
 	err := mongodb.InitDatabaseConnection(*host)
 	if err != nil {
 		fmt.Println(err)
