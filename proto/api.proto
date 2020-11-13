@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package sailet_api;
 
-message Login {
+message LoginRequest {
     string email = 1;
     string password = 2;
 }
@@ -22,17 +22,28 @@ message GetRequest{
 }
 
 message DeletResponce{
-    string message = 1;
+    bool message = 1;
+}
+
+message UpdateResponce{
+    bool message = 1;
+}
+
+
+message Empty {
+
 }
 
 service AccountService {
-    rpc Login(Login) returns (Account) {}
+    rpc Login(LoginRequest) returns (Account) {}
 
     rpc Get(GetRequest) returns (Account) {}
 
-    rpc GetAll(GetRequest) returns (ItemAccount) {}
+    rpc GetAll(Empty) returns (ItemAccount) {}
 
-    rpc Update(Account) returns (Account) {}
+    rpc Create(Account) returns (Account) {}
+
+    rpc Update(Account) returns (UpdateResponce) {}
 
     rpc Delet(Account) returns (DeletResponce){}
 }

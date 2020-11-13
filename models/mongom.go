@@ -53,10 +53,10 @@ func (m *MgModel) GetAccount(email string) (*Account, error) {
 	return Account, nil
 }
 
-func (m *MgModel) DeleteAccount(id string) (bool, error) {
+func (m *MgModel) DeleteAccount(email string) (bool, error) {
 
 	c := m.session.DB("AccountService").C("Accounts")
-	err := c.RemoveId(id)
+	err := c.Remove(bson.D{{"email", email}})
 
 	if err != nil {
 		return false, err
